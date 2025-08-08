@@ -253,11 +253,17 @@ $(".mode").change(function () {
 		params.delete('mode');
 		params = '' + params;
 		window.location.replace('oms' + linkExtension + (params.length ? '?' + params : ''));
-	} else {
-		var params = new URLSearchParams(window.location.search);
-		params.set('mode', $(this).attr("id"));
-		window.location.replace('honkalculate' + linkExtension + '?' + params);
-	}
+        } else if ($("#one-vs-all").prop("checked")) {
+                var params = new URLSearchParams(window.location.search);
+                params.delete('mode');
+                params = '' + params;
+                window.location.replace('one-vs-all' + linkExtension + (params.length ? '?' + params : ''));
+        } else if ($("#all-vs-one").prop("checked")) {
+                var params = new URLSearchParams(window.location.search);
+                params.delete('mode');
+                params = '' + params;
+                window.location.replace('all-vs-one' + linkExtension + (params.length ? '?' + params : ''));
+        }
 });
 
 $(".tiers label").mouseup(function () {
@@ -315,17 +321,25 @@ $(".set-selector").change(function (e) {
 
 var dtHeight, dtWidth;
 $(document).ready(function () {
-	var params = new URLSearchParams(window.location.search);
-	window.mode = params.get("mode");
-	if (window.mode) {
-		if (window.mode === "randoms") {
-			window.location.replace("randoms" + linkExtension + "?" + params);
-		} else if (window.mode !== "one-vs-all" && window.mode !== "all-vs-one") {
-			window.location.replace("index" + linkExtension + "?" + params);
-		}
-	} else {
-		window.mode = "one-vs-all";
-	}
+        var params = new URLSearchParams(window.location.search);
+        window.mode = params.get("mode");
+        if (!window.mode) {
+                var path = window.location.pathname;
+                if (path.indexOf("all-vs-one") !== -1) {
+                        window.mode = "all-vs-one";
+                } else {
+                        window.mode = "one-vs-all";
+                }
+        } else if (window.mode === "randoms") {
+                window.location.replace("randoms" + linkExtension + "?" + params);
+                return;
+        } else if (window.mode === "one-vs-one") {
+                window.location.replace("index" + linkExtension + "?" + params);
+                return;
+        } else if (window.mode !== "one-vs-all" && window.mode !== "all-vs-one") {
+                window.location.replace("index" + linkExtension + "?" + params);
+                return;
+        }
 
 	$("#" + mode).prop("checked", true);
 	$("#holder-2 th:first").text((mode === "one-vs-all") ? "Defender" : "Attacker");

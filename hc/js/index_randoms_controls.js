@@ -177,7 +177,7 @@ $(".mode").change(function () {
 	} else if (mode === "oms") {
 		window.location.replace('oms' + linkExtension);
 	} else {
-		window.location.replace('honkalculate' + linkExtension + '?' + params);
+		window.location.replace('one-vs-all' + linkExtension + '?' + params);
 	}
 });
 
@@ -190,7 +190,7 @@ $(document).ready(function () {
 	var m = params.get('mode');
 	if (m) {
 		if (m !== 'one-vs-one' && m !== 'randoms' && m !== 'normal' && m !== 'hardcore') {
-			window.location.replace('honkalculate' + linkExtension + '?' + params);
+			window.location.replace('one-vs-all' + linkExtension + '?' + params);
 		} else {
 			if ($('#randoms').prop('checked')) {
 				if (m === 'one-vs-one') {
