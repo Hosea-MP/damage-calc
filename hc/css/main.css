@@ -528,3 +528,21 @@ table.field {
 .extraSetMoves {
     width: 100%;
 }
+
+.calc-wrapper {
+    display:flex;
+    gap:20px;
+    align-items:flex-start;
+}
+
+.calc-inputs {
+    flex:1;
+}
+
+.calc-results {
+    flex:1;
+}
+
+.calc-results table {
+    width:100%;
+}
