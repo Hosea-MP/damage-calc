@@ -243,16 +243,6 @@ $(".mode").change(function () {
 		params.delete('mode');
 		params = '' + params;
 		window.location.replace('index' + linkExtension + (params.length ? '?' + params : ''));
-	} else if ($("#randoms").prop("checked")) {
-		var params = new URLSearchParams(window.location.search);
-		params.delete('mode');
-		params = '' + params;
-		window.location.replace('randoms' + linkExtension + (params.length ? '?' + params : ''));
-	} else if ($("#oms").prop("checked")) {
-		var params = new URLSearchParams(window.location.search);
-		params.delete('mode');
-		params = '' + params;
-		window.location.replace('oms' + linkExtension + (params.length ? '?' + params : ''));
         } else if ($("#one-vs-all").prop("checked")) {
                 var params = new URLSearchParams(window.location.search);
                 params.delete('mode');
